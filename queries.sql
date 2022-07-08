@@ -59,3 +59,13 @@ SELECT * FROM animals WHERE escape_attempts = (SELECT MAX(escape_attempts) FROM 
 SELECT MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals;
 -- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 SELECT AVG (weight_kg) FROM animals WHERE date_of_birth BETWEEN '1/1/1990' AND '1/1/2000';
+
+-- Modify your inserted animals so it includes the species_id value:
+--If the name ends in "mon" it will be Digimon
+UPDATE animals SET species_id = (
+	SELECT id FROM species WHERE name = 'Digimon'
+) WHERE name LIKE '%mon';
+-- All other animals are Pokemon
+UPDATE animals SET species_id = (
+	SELECT id FROM species WHERE name = 'Pokemon'
+) WHERE name NOT LIKE '%mon';

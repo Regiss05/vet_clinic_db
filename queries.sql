@@ -18,6 +18,37 @@ SELECT * FROM animals WHERE neutered = 'true';
 SELECT * FROM animals WHERE name != 'Gabumon';
 -- query to select all animals which are between 10.4 and 17.3 kg
 SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
+-- Add new column
+ALTER TABLE animals ADD species VARCHAR(100);
+
+-- user transaction to rename to redo the change
+BEGIN;
+UPDATE animals SET species = 'unspecified';
+ROLLBACK;
+
+-- add data into species field using transaction update
+BEGIN
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon'
+UPDATE animals SET species = 'pokemon' WHERE species IS null
+COMMIT
+SELECT * FROM animals
+
+-- Inside a transaction delete all records in the animals table, then roll back the transaction.
+BEGIN;
+DELETE FROM animals
+ROLLBACK;
+SELECT * FROM animals
+
+-- Add and delete data using transaction
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '1/1/2022';
+SAVEPOINT SP1;
+UPDATE animals SET weight_kg = weight_kg * (-1);
+ROLLBACK TO SP1;
+UPDATE animals SET weight_kg = weight_kg * (-1) WHERE weight_kg < 0;
+COMMIT;
+SELECT * FROM animals
+
 -- display all animals
 SELECT * FROM animals
 -- How many animals have never tried to escape?

@@ -18,3 +18,5 @@ SELECT * FROM animals WHERE neutered = 'true';
 SELECT * FROM animals WHERE name != 'Gabumon';
 -- query to select all animals which are between 10.4 and 17.3 kg
 SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
+-- display all animals
+SELECT * FROM animals

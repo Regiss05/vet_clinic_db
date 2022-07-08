@@ -29,3 +29,13 @@ BEGIN;
 DELETE FROM animals
 ROLLBACK;
 SELECT * FROM animals
+
+-- Add and delete data using transaction
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '1/1/2022';
+SAVEPOINT SP1;
+UPDATE animals SET weight_kg = weight_kg * (-1);
+ROLLBACK TO SP1;
+UPDATE animals SET weight_kg = weight_kg * (-1) WHERE weight_kg < 0;
+COMMIT;
+SELECT * FROM animals

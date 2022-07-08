@@ -20,3 +20,5 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
 -- display all animals
 SELECT * FROM animals
+-- How many animals have never tried to escape?
+SELECT * FROM animals WHERE escape_attempts = 0;

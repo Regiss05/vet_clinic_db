@@ -8,3 +8,32 @@ CREATE TABLE animals (
     neutered BOOLEAN,
     weight_kg DECIMAL
 );
+
+-- Add new column
+ALTER TABLE animals ADD species VARCHAR(100);
+
+CREATE TABLE owners (
+  	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    full_name VARCHAR(100),
+    age INT
+);
+
+CREATE TABLE species (
+  	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(100)
+)
+
+-- delete column species
+ALTER TABLE animals DROP COLUMN species;
+
+-- Add column and grent a foreign key to species table
+ALTER TABLE animals ADD species_id INT;
+ ALTER TABLE animals
+ ADD CONSTRAINT species_id
+ FOREIGN KEY(species_id) REFERENCES species(id);
+
+-- Add column and grent a foreign key to owners table
+ALTER TABLE animals ADD owner_id INT
+ALTER TABLE animals
+ ADD CONSTRAINT owner_id
+ FOREIGN KEY(owner_id) REFERENCES owners(id);

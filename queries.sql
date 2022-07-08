@@ -22,3 +22,7 @@ SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
 SELECT * FROM animals
 -- How many animals have never tried to escape?
 SELECT * FROM animals WHERE escape_attempts = 0;
+-- What is the average weight of animals?
+SELECT AVG (weight_kg) FROM animals;
+-- Who escapes the most, neutered or not neutered animals?
+SELECT * FROM animals WHERE escape_attempts = (SELECT MAX(escape_attempts) FROM animals);

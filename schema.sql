@@ -11,3 +11,8 @@ CREATE TABLE animals (
 
 -- Add new column
 ALTER TABLE animals ADD species VARCHAR(100);
+
+-- user transaction to rename to redo the change
+BEGIN;
+UPDATE animals SET species = 'unspecified';
+ROLLBACK;

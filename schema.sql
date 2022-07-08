@@ -16,3 +16,16 @@ ALTER TABLE animals ADD species VARCHAR(100);
 BEGIN;
 UPDATE animals SET species = 'unspecified';
 ROLLBACK;
+
+-- add data into species field using transaction update
+BEGIN
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon'
+UPDATE animals SET species = 'pokemon' WHERE species IS null
+COMMIT
+SELECT * FROM animals
+
+-- Inside a transaction delete all records in the animals table, then roll back the transaction.
+BEGIN;
+DELETE FROM animals
+ROLLBACK;
+SELECT * FROM animals

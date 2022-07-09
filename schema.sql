@@ -53,4 +53,9 @@ CREATE TABLE specializations(
     vets_id INT REFERENCES vets(id)
 );
 
-SELECT * FROM specializations
+-- create visits table
+CREATE TABLE visits(
+    visits_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    animals_id INT REFERENCES animals(id),
+    vets_id INT REFERENCES vets(id)
+);

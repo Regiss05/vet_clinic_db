@@ -94,3 +94,12 @@ FROM animals INNER JOIN  species ON animals.species_id = species.id
  INNER JOIN owners ON animals.owner_id = owners.id
 WHERE owners.full_name = 'Jennifer Orwell' AND species.name= 'Digimon'
 ORDER BY Animal_Name ASC; 
+
+-- List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT  animals.name as Animal_Name, animals.escape_attempts,
+owners.full_name as Owned_By
+FROM animals
+INNER JOIN owners ON animals.owner_id = owners.id
+WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0 
+ORDER BY Animal_Name ASC; 
+

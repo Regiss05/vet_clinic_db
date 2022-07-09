@@ -116,3 +116,7 @@ SELECT vets.name as VET_NAME, animals.name as Animal_Last_Seen,
 visits.date_of_visit FROM vets JOIN visits ON vets.id = visits.vets_id
 JOIN animals ON animals.id = visits.animals_id
 WHERE vets.name ='William Tatcher' ORDER BY visits.date_of_visit DESC LIMIT 1;
+
+-- How many different animals did Stephanie Mendez see
+SELECT COUNT(*) as count_Animals_seen_by_Stephanie_Mendez from vets JOIN
+visits ON vets.id = visits.vets_id WHERE name='Stephanie Mendez'

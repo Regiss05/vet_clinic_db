@@ -71,3 +71,9 @@ species.name as Animal_Species
 FROM animals INNER JOIN 
 species ON animals.species_id = species.id
 WHERE species.name = 'Pokemon';
+
+--List all owners and their animals, remember to include those that don't own any animal
+SELECT owners.full_name as Owner, 
+animals.name as Animal_Name
+FROM owners INNER JOIN 
+animals ON owners.id = animals.owners_id;

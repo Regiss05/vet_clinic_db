@@ -59,3 +59,15 @@ SELECT * FROM animals WHERE escape_attempts = (SELECT MAX(escape_attempts) FROM 
 SELECT MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals;
 -- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 SELECT AVG (weight_kg) FROM animals WHERE date_of_birth BETWEEN '1/1/1990' AND '1/1/2000';
+
+-- What animals belong to Melody Pond?
+ SELECT animals.name as Animal_Name, owners.full_name as Animal_Owner
+ FROM animals INNER JOIN owners ON animals.owners_id = owners.id
+ WHERE owners.full_name ='Melody Pond';
+
+--List of all animals that are pokemon (their type is Pokemon).
+SELECT animals.name as Animal_Name, 
+species.name as Animal_Species
+FROM animals INNER JOIN 
+species ON animals.species_id = species.id
+WHERE species.name = 'Pokemon';

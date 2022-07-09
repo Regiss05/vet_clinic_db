@@ -110,3 +110,9 @@ FROM animals INNER JOIN owners ON animals.owner_id = owners.id
 WHERE animals.owner_id = owners.id 
 GROUP BY Who_Owns_most_animals
 ORDER BY Animal_Highest_Count DESC LIMIT 1;
+
+-- Who was the last animal seen by William Tatcher
+SELECT vets.name as VET_NAME, animals.name as Animal_Last_Seen,
+visits.date_of_visit FROM vets JOIN visits ON vets.id = visits.vets_id
+JOIN animals ON animals.id = visits.animals_id
+WHERE vets.name ='William Tatcher' ORDER BY visits.date_of_visit DESC LIMIT 1;

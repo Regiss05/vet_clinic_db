@@ -103,7 +103,7 @@ INNER JOIN owners ON animals.owner_id = owners.id
 WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0 
 ORDER BY Animal_Name ASC; 
 
--- Who owns the most animals?.
+-- Who owns the most animals.
 SELECT  owners.full_name as Who_Owns_most_animals, 
 COUNT(animals.owner_id) as Animal_Highest_Count
 FROM animals INNER JOIN owners ON animals.owner_id = owners.id

@@ -170,3 +170,9 @@ WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY species.name DESC 
 LIMIT 1;
+
+SELECT animals.name as Animal_Name, COUNT(*) as heighest_visit from animals
+JOIN visits ON visits.animals_id = animals.id
+GROUP BY animals.name
+ORDER BY heighest_visit DESC
+LIMIT 1;

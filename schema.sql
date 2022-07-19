@@ -37,3 +37,31 @@ ALTER TABLE animals ADD owner_id INT
 ALTER TABLE animals
  ADD CONSTRAINT owner_id
  FOREIGN KEY(owner_id) REFERENCES owners(id);
+
+--  Create a table named vets
+ CREATE TABLE vets(
+   id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   name VARCHAR(200),
+   age INT,
+   date_of_graduation DATE
+);
+
+-- Create specialization table
+CREATE TABLE specializations(
+    specialty_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    species_id INT REFERENCES species(id),
+    vets_id INT REFERENCES vets(id)
+);
+
+-- create visits table
+CREATE TABLE visits(
+    visits_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    animals_id INT REFERENCES animals(id),
+    vets_id INT REFERENCES vets(id)
+);
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+CREATE INDEX ON visits (vets_id);
+CREATE INDEX ON visits (animals_id);
